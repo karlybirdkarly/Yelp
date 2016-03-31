@@ -11,10 +11,8 @@ import MapKit
 import CoreLocation
 
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
-
     
     @IBOutlet weak var tableView: UITableView!
-
     
     var button: UIButton = UIButton(type: UIButtonType.Custom)
     var leftBarButton: UIBarButtonItem!
@@ -24,9 +22,9 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     var isMoreDataLoading = false
     
     var customSearchBar = UISearchBar(frame: CGRectMake(0, 0, 200, 20))
+    
     var businesses: [Business]!
     var filteredBusinesses: [Business]!
-    
     var searchedCategories: String!
     
     override func viewDidLoad() {
@@ -153,7 +151,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
  
              self.loadingMoreView!.stopAnimating()
             
-      
         });
         task.resume()
     }
@@ -161,11 +158,6 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredBusinesses?.count ?? 0
-//        if filteredBusinesses.count != 0 {
-//            return filteredBusinesses.count
-//        } else {
-//            return businesses.count
-//        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -192,11 +184,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-            let destinationVC = segue.destinationViewController as! MapViewController
+        let destinationVC = segue.destinationViewController as! MapViewController
         destinationVC.businesses = filteredBusinesses
         
-   
     }
-
-
 }

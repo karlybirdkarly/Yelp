@@ -34,26 +34,13 @@ class Business: NSObject {
         var long = 0.00
         var lat = 0.00
         if location != nil {
-            
             long = (location!["coordinate"]!["longitude"]! as? Double)!
             lat = (location!["coordinate"]!["latitude"] as? Double)!
-//            let coordinate = dictionary["coordinate"] as? NSDictionary
-//           
-//                if coordinate != nil {
-//                    
-//                    print("Coordiantes")
-//                    long = coordinate!["longitude"] as! Double
-//                    lat = coordinate!["latitude"] as! Double
-//                } else {
-//                    print("No coordiante")
-//            }
 
             let addressArray = location!["address"] as? NSArray
             if addressArray != nil && addressArray!.count > 0 {
                 address = addressArray![0] as! String
             }
-            
-            
             let neighborhoods = location!["neighborhoods"] as? NSArray
             if neighborhoods != nil && neighborhoods!.count > 0 {
                 if !address.isEmpty {

@@ -20,11 +20,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //MARK: - Map view settings
-      //  let centerLocation = CLLocation(latitude: 37.7833, longitude: -122.4167)
-//        let centerLocation = CLLocation(latitude: 40.7767, longitude: -73.5995)
-//        goToLocation(centerLocation)
-        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -35,10 +30,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         Business.searchWithTerm("Restaurant", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             
             for business in businesses {
+                //set a location
                 let lat = business.latitude!
                 let long = business.longitude!
                 let location = CLLocationCoordinate2DMake(lat, long)
-                // Drop a pin
+                // Drop a pin to the locations
                 let dropPin = MKPointAnnotation()
                 dropPin.coordinate = location
                 dropPin.title = business.name!
@@ -48,7 +44,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             }
 
         })
-            }
+    }
     
     func goToLocation(location: CLLocation) {
         let span = MKCoordinateSpanMake(0.1, 0.1)
